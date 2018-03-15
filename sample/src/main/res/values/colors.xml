@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#eaeaea</color>
+    <color name="colorPrimaryDark">#cfcfcf</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorEventTime">#ffffff</color>
+    <color name="colorEventTitle">#ffffff</color>
+
+    <!--Google colors-->
+    <color name="colorGoogleGreen">#3cba54</color>
+    <color name="colorGoogleYellow">#f4c20d</color>
+    <color name="colorGoogleRed">#db3236</color>
+    <color name="colorGoogleBlue">#4885ed</color>
+
+</resources>

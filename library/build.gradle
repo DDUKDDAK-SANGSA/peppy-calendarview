@@ -1,0 +1,186 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+// library version
+version = "0.1.0"
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName version
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
+def siteUrl = 'https://github.com/snollidea/peppy-calendarview'
+def gitUrl = 'https://github.com/snollidea/peppy-calendarview.git'
+group = "com.snollidea"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name 'com.snollidea:peppy-calendarview'
+                description = 'Material Calendar View'
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'snollidea'
+                        name 'Anton X'
+                        email 'snollidea@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+//ext {
+//    bintrayRepo = 'maven'
+//    bintrayName = 'Peppy-CalendarView'
+//
+//    publishedGroupId = 'com.snollidea'
+//    libraryName = 'Peppy-CalendarView'
+//    artifact = 'peppy-calendarview'
+//
+//    libraryDescription = 'Material Design Calendar view for Android.'
+//
+//    siteUrl = 'https://github.com/snollidea/peppy-calendarview'
+//    gitUrl = 'https://github.com/snollidea/peppy-calendarview.git'
+//
+//    libraryVersion = '0.1.0'
+//
+//    developerId = 'Cerp'
+//    developerName = 'Anton X'
+//    developerEmail = 'snollidea@gmail.com'
+//
+//    licenseName = 'MIT'
+//    licenseUrl = 'https://opensource.org/licenses/MIT'
+//    allLicenses = ["MIT"]
+//}
+
+//group = publishedGroupId
+//version = libraryVersion
+
+//install {
+//    repositories.mavenInstaller {
+//        pom.project {
+//            packaging 'aar'
+//            groupId publishedGroupId
+//            artifactId artifact
+//
+//            name libraryName
+//            description libraryDescription
+//            url siteUrl
+//
+//            licenses {
+//                license {
+//                    name licenseName
+//                    url licenseUrl
+//                }
+//            }
+//            developers {
+//                developer {
+//                    id developerId
+//                    name developerName
+//                    email developerEmail
+//                }
+//            }
+//            scm {
+//                connection gitUrl
+//                developerConnection gitUrl
+//                url siteUrl
+//            }
+//        }
+//    }
+//}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        userOrg = 'snollidea'
+        repo = "maven"
+        name = "Peppy-CalendarView"
+//        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["MIT"]
+//        dryRun = false
+        publish = true
+        override = true
+//        publicDownloadNumbers = true
+        version {
+            name = '0.1.0'
+            released = new Date()
+            vcsTag = '0.1.0'
+//            desc = libraryDescription
+        }
+    }
+}

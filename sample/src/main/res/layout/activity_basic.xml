@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.snollidea.peppycalendarview.BasicActivity">
+
+    <com.snollidea.peppycalendarview.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundColor="#ffffff"
+        app:textColor="#000000"
+        app:textInsideCircleColor="#ffffff"
+        app:weekDaysNamesColor="#9f9f9f"
+        app:currentDayCircleColor="@color/colorGoogleGreen"
+        app:selectedCircleColor="#c9c9c9"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

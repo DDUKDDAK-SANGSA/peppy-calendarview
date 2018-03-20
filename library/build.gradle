@@ -42,7 +42,6 @@ group = "com.snollidea"
 
 install {
     repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
         pom {
             project {
                 packaging 'aar'
@@ -52,7 +51,6 @@ install {
                 description = 'Material Calendar View'
                 url siteUrl
 
-                // Set your license
                 licenses {
                     license {
                         name 'MIT'
@@ -75,66 +73,6 @@ install {
         }
     }
 }
-
-//ext {
-//    bintrayRepo = 'maven'
-//    bintrayName = 'Peppy-CalendarView'
-//
-//    publishedGroupId = 'com.snollidea'
-//    libraryName = 'Peppy-CalendarView'
-//    artifact = 'peppy-calendarview'
-//
-//    libraryDescription = 'Material Design Calendar view for Android.'
-//
-//    siteUrl = 'https://github.com/snollidea/peppy-calendarview'
-//    gitUrl = 'https://github.com/snollidea/peppy-calendarview.git'
-//
-//    libraryVersion = '0.1.0'
-//
-//    developerId = 'Cerp'
-//    developerName = 'Anton X'
-//    developerEmail = 'snollidea@gmail.com'
-//
-//    licenseName = 'MIT'
-//    licenseUrl = 'https://opensource.org/licenses/MIT'
-//    allLicenses = ["MIT"]
-//}
-
-//group = publishedGroupId
-//version = libraryVersion
-
-//install {
-//    repositories.mavenInstaller {
-//        pom.project {
-//            packaging 'aar'
-//            groupId publishedGroupId
-//            artifactId artifact
-//
-//            name libraryName
-//            description libraryDescription
-//            url siteUrl
-//
-//            licenses {
-//                license {
-//                    name licenseName
-//                    url licenseUrl
-//                }
-//            }
-//            developers {
-//                developer {
-//                    id developerId
-//                    name developerName
-//                    email developerEmail
-//                }
-//            }
-//            scm {
-//                connection gitUrl
-//                developerConnection gitUrl
-//                url siteUrl
-//            }
-//        }
-//    }
-//}
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -168,19 +106,15 @@ bintray {
         userOrg = 'snollidea'
         repo = "maven"
         name = "Peppy-CalendarView"
-//        desc = libraryDescription
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["MIT"]
-//        dryRun = false
         publish = true
         override = true
-//        publicDownloadNumbers = true
         version {
             name = '0.1.0'
             released = new Date()
             vcsTag = '0.1.0'
-//            desc = libraryDescription
         }
     }
 }
